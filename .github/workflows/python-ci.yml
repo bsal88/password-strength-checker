@@ -1,4 +1,4 @@
-name: Python CI
+name: Python CI with Bandit
 
 on:
   push:
@@ -24,12 +24,18 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Run Linter
+      - name: Run Linter (flake8)
         run: |
           pip install flake8
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 
-      - name: Run Tests
+      - name: Run Unit Tests
         run: |
           pip install pytest
           pytest
+
+      - name: Run Bandit Security Scan
+        run: |
+          pip install bandit
+          bandit -r . -ll
+
