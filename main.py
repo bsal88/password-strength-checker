@@ -72,3 +72,4 @@ button = tk.Button(root, text="Check Strength", command=evaluate_password, font=
 button.pack(pady=20)
 
 root.mainloop()
+# trigger CI
